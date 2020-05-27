@@ -5,6 +5,8 @@ var connection = mysql.createConnection({
   user: "nayan",
   password: "nayan",
   database: "DTS",
+  idle_connection: 10,
+  max_connection: 100,
 });
 
 connection.connect((err) => {
@@ -12,7 +14,7 @@ connection.connect((err) => {
     console.log(">>> error connecting to database...");
     return;
   }
-  // console.log(">>> connected as id " + connection.threadId);
+  console.log(">>> connected as id " + connection.threadId);
 });
 
 module.exports = connection;

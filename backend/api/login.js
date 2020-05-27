@@ -10,11 +10,19 @@ router.post("/login", (req, res) => {
       (err, result, fields) => {
         if (err) {
           res.status(400).json({ error: "bad request" });
+          return;
         }
         if (result[0] == undefined) {
           res.status(401).json({ error: "username does not exist" });
+          return;
         }
-        res.status(200).json({ message: "success" });
+        // res.status(200).json({ message: "success" });
+        res.status(200).json({
+          fist_name: result[0].first_name,
+          last_name: result[0].last_name,
+          username: result[0].username,
+        });
+        return;
       }
     );
 
