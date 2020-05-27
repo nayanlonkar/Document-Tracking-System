@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./SignIn.css";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -18,11 +19,12 @@ const useStyles = makeStyles({
   },
   button: {
     marginTop: "40px",
+    marginBottom: "20px",
     width: "120px",
   },
 });
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
@@ -30,10 +32,18 @@ export default function SignIn() {
   function ValidateForm() {
     return username.length > 0 && password.length > 0;
   }
-  function onSubmitHandler(event) {
+  async function onSubmitHandler(event) {
     event.preventDefault();
-    console.log(`username is ${username}`);
-    console.log(`password is ${password}`);
+    const param = {
+      username: username,
+      password: password,
+    };
+    try {
+      let res = await axios.post("http://localhost:3001/api/login", param);
+      res = res;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -75,7 +85,11 @@ export default function SignIn() {
           className={classes.button}
           disabled={!ValidateForm()}
         >
-          Submit
+          LOG IN
+        </Button>
+        <br />
+        <Button color="primary" onClick={(e) => props.settoggle(1)}>
+          Create an account
         </Button>
       </form>
     </div>

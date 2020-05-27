@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
 export default function Auth() {
+  const [toggle, settoggle] = useState(0);
   return (
     <div className="Auth">
-      {/* <SignIn /> */}
-      <SignUp />
+      {toggle === 0 ? (
+        <SignIn settoggle={settoggle} />
+      ) : (
+        <SignUp settoggle={settoggle} />
+      )}
     </div>
   );
 }

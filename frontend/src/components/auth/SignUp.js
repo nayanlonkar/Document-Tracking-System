@@ -12,11 +12,12 @@ const useStyles = makeStyles({
   },
   button: {
     marginTop: "40px",
+    marginBottom: "20px",
     width: "120px",
   },
 });
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -109,7 +110,11 @@ export default function SignUp() {
           variant="outlined"
           className={classes.button}
         >
-          Submit
+          SIGN UP
+        </Button>
+        <br />
+        <Button color="primary" onClick={(e) => props.settoggle(0)}>
+          LOG IN
         </Button>
       </form>
     </div>
