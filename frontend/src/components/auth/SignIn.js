@@ -28,6 +28,7 @@ export default function SignIn(props) {
   const classes = useStyles();
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
+  const [error, seterror] = useState(false);
 
   function ValidateForm() {
     return username.length > 0 && password.length > 0;
@@ -38,11 +39,18 @@ export default function SignIn(props) {
       username: username,
       password: password,
     };
+    let result;
     try {
       let res = await axios.post("http://localhost:3001/api/login", param);
-      res = res;
-    } catch (error) {
-      console.log(error);
+      result = res;
+    } catch (err) {
+      seterror(true);
+      return;
+    }
+    console.log(result.data);
+    if (result.status === 200) {
+      props.setisLoggedIn(true);
+      props.setuser(result.data); // set data in user object
     }
   }
 
@@ -58,6 +66,7 @@ export default function SignIn(props) {
             value={username}
             className={classes.input}
             onChange={(e) => setusername(e.target.value)}
+            error={error}
           />
         </FormControl>
         <br />
@@ -72,6 +81,7 @@ export default function SignIn(props) {
             className={classes.input}
             onChange={(e) => setpassword(e.target.value)}
             aria-describedby="username-helper-text"
+            error={error}
           />
           <FormHelperText id="username-helper-text">
             Your password is safe with us
