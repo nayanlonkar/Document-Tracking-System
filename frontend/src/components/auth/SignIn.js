@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SignIn.css";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   FormControl,
   InputLabel,
@@ -8,44 +9,72 @@ import {
   Button,
 } from "@material-ui/core";
 
+const useStyles = makeStyles({
+  input: {
+    width: "150%",
+  },
+  inputLabel: {
+    fontSize: "large",
+  },
+  button: {
+    marginTop: "40px",
+    width: "120px",
+  },
+});
+
 export default function SignIn() {
+  const classes = useStyles();
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
 
   function ValidateForm() {
     return username.length > 0 && password.length > 0;
   }
-  function onSubmitHandler() {}
+  function onSubmitHandler(event) {
+    event.preventDefault();
+    console.log(`username is ${username}`);
+    console.log(`password is ${password}`);
+  }
+
   return (
     <div className="SignIn">
-      <form className="SignIn-form">
-        <FormControl color="primary">
-          <InputLabel htmlFor="username">Username:</InputLabel>
+      <form className="SignIn-form" onSubmit={onSubmitHandler}>
+        <FormControl color="primary" required>
+          <InputLabel htmlFor="username" className={classes.inputLabel}>
+            Username:
+          </InputLabel>
           <Input
             id="username"
-            type="text"
             value={username}
+            className={classes.input}
             onChange={(e) => setusername(e.target.value)}
-            required
           />
         </FormControl>
         <br />
-        <FormControl>
-          <InputLabel htmlFor="password">Password:</InputLabel>
+        <FormControl color="primary" required>
+          <InputLabel htmlFor="password" className={classes.inputLabel}>
+            Password:
+          </InputLabel>
           <Input
             id="password"
             type="password"
             value={password}
+            className={classes.input}
             onChange={(e) => setpassword(e.target.value)}
-            aria-describedy="username-helper-text"
-            required
+            aria-describedby="username-helper-text"
           />
           <FormHelperText id="username-helper-text">
             Your password is safe with us
           </FormHelperText>
         </FormControl>
         <br />
-        <Button color="primary" variant="outlined" disabled={!ValidateForm()}>
+        <Button
+          type="submit"
+          color="primary"
+          variant="outlined"
+          className={classes.button}
+          disabled={!ValidateForm()}
+        >
           Submit
         </Button>
       </form>
