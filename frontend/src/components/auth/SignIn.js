@@ -33,12 +33,15 @@ export default function SignIn(props) {
   function ValidateForm() {
     return username.length > 0 && password.length > 0;
   }
+
   async function onSubmitHandler(event) {
     event.preventDefault();
+
     const param = {
       username: username,
       password: password,
     };
+
     let result;
     try {
       let res = await axios.post("http://localhost:3001/api/login", param);
@@ -47,7 +50,7 @@ export default function SignIn(props) {
       seterror(true);
       return;
     }
-    console.log(result.data);
+
     if (result.status === 200) {
       props.setisLoggedIn(true);
       props.setuser(result.data); // set data in user object

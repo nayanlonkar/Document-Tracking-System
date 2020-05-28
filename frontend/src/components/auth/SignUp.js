@@ -25,20 +25,35 @@ export default function SignUp(props) {
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
 
+  function ValidateForm() {
+    return (
+      firstName.length > 0 &&
+      lastName.length > 0 &&
+      username.length > 0 &&
+      password.length > 0 &&
+      confirmPassword.length > 0 &&
+      password === confirmPassword
+    );
+  }
+
   function onSubmitHandler(event) {
     event.preventDefault();
-    console.log("this is console log");
-    console.log(`first name is ${firstName}`);
-    console.log(`last name is ${lastName}`);
-    console.log(`username is ${username}`);
-    console.log(`password is ${password}`);
-    console.log(`confirm password is ${confirmPassword}`);
+
+    const param = {
+      first_name: firstName,
+      last_name: lastName,
+      username: username,
+      password: password,
+    };
+
+    try {
+    } catch (err) {}
   }
 
   return (
     <div className="SignUp">
       <form className="SignUp-form" onSubmit={onSubmitHandler}>
-        <FormControl color="primary">
+        <FormControl color="primary" required>
           <InputLabel htmlFor="firstname" className={classes.inputLabel}>
             First Name
           </InputLabel>
@@ -51,7 +66,7 @@ export default function SignUp(props) {
         </FormControl>
         <br />
 
-        <FormControl color="primary">
+        <FormControl color="primary" required>
           <InputLabel htmlFor="lastname" className={classes.inputLabel}>
             Last Name
           </InputLabel>
@@ -64,7 +79,7 @@ export default function SignUp(props) {
         </FormControl>
         <br />
 
-        <FormControl color="primary">
+        <FormControl color="primary" required>
           <InputLabel htmlFor="username" className={classes.inputLabel}>
             Username
           </InputLabel>
@@ -77,12 +92,13 @@ export default function SignUp(props) {
         </FormControl>
         <br />
 
-        <FormControl color="primary">
+        <FormControl color="primary" required>
           <InputLabel htmlFor="password" className={classes.inputLabel}>
             Password
           </InputLabel>
           <Input
             id="password"
+            type="password"
             value={password}
             className={classes.input}
             onChange={(e) => setpassword(e.target.value)}
@@ -90,12 +106,13 @@ export default function SignUp(props) {
         </FormControl>
         <br />
 
-        <FormControl color="primary">
+        <FormControl color="primary" required>
           <InputLabel htmlFor="confirmPassword" className={classes.inputLabel}>
             Confirm Password
           </InputLabel>
           <Input
             id="confirmPassword"
+            type="password"
             value={confirmPassword}
             className={classes.input}
             onChange={(e) => setconfirmPassword(e.target.value)}
@@ -109,6 +126,7 @@ export default function SignUp(props) {
           color="primary"
           variant="outlined"
           className={classes.button}
+          disabled={!ValidateForm()}
         >
           SIGN UP
         </Button>
