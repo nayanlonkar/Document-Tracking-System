@@ -16,17 +16,22 @@ router.post("/login", (req, res) => {
           res.status(401).json({ error: "username does not exist" });
           return;
         }
-        // res.status(200).json({ message: "success" });
-        res.status(200).json({
-          fist_name: result[0].first_name,
-          last_name: result[0].last_name,
-          username: result[0].username,
-        });
-        return;
+
+        if (req.body.password === result[0].password) {
+          res.status(200).json({
+            fist_name: result[0].first_name,
+            last_name: result[0].last_name,
+            username: result[0].username,
+          });
+          return;
+        }
+
+        res.status(401).json({ error: "unauthorized access" });
       }
     );
 
   result();
-  // res.status(200).json({ message: "success" });
+
+  // res.status(401).json({ error: "unauthorized access" });
 });
 module.exports = router;
