@@ -31,7 +31,5 @@ router.post("/login", (req, res) => {
     );
 
   result();
-
-  // res.status(401).json({ error: "unauthorized access" });
 });
 module.exports = router;

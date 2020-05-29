@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import Axios from "axios";
 import "./SignIn.css";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -44,7 +44,7 @@ export default function SignIn(props) {
 
     let result;
     try {
-      let res = await axios.post("http://localhost:3001/api/login", param);
+      let res = await Axios.post("http://localhost:3001/api/login", param);
       result = res;
     } catch (err) {
       seterror(true);

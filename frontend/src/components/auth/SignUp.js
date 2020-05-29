@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./SignUp.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+import Axios from "axios";
 
 const useStyles = makeStyles({
   input: {
@@ -15,6 +17,10 @@ const useStyles = makeStyles({
     marginBottom: "20px",
     width: "120px",
   },
+  alert: {
+    marginLeft: "45%",
+    marginRight: "35%",
+  },
 });
 
 export default function SignUp(props) {
@@ -24,6 +30,8 @@ export default function SignUp(props) {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
+  const [error, seterror] = useState(null);
+  const [msg, setmsg] = useState(null);
 
   function ValidateForm() {
     return (
@@ -36,7 +44,7 @@ export default function SignUp(props) {
     );
   }
 
-  function onSubmitHandler(event) {
+  async function onSubmitHandler(event) {
     event.preventDefault();
 
     const param = {
@@ -46,8 +54,15 @@ export default function SignUp(props) {
       password: password,
     };
 
+    let result;
     try {
-    } catch (err) {}
+      let res = await Axios.post("http://localhost:3001/api/register", param);
+      result = res;
+    } catch (err) {
+      return;
+    }
+    if (result.status === 203) seterror("username is already present");
+    if (result.status === 201) setmsg(result.data.message);
   }
 
   return (
@@ -135,6 +150,26 @@ export default function SignUp(props) {
           LOG IN
         </Button>
       </form>
+
+      {error != null ? (
+        <Alert
+          severity="error"
+          className={classes.alert}
+          onClose={(e) => seterror(null)}
+        >
+          <strong>{error}</strong>
+        </Alert>
+      ) : null}
+
+      {msg != null ? (
+        <Alert
+          severity="success"
+          className={classes.alert}
+          onClose={(e) => setmsg(null)}
+        >
+          <strong>{msg}</strong>
+        </Alert>
+      ) : null}
     </div>
   );
 }
