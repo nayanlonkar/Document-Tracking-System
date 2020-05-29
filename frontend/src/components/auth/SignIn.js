@@ -13,6 +13,7 @@ import {
 const useStyles = makeStyles({
   input: {
     width: "150%",
+    marginBottom: "10px",
   },
   inputLabel: {
     fontSize: "large",

@@ -1,8 +1,9 @@
 .SignUp {
   text-align: center;
+  margin-top: 10%;
 }
 
-.Button {
-  color: black;
-  font-size: xx-large;
+.SignUp-form {
+  /* border: 1px solid black; */
+  /* border: 0.1em solid black; */
 }
