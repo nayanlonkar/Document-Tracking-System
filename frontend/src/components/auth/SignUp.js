@@ -137,7 +137,6 @@ export default function SignUp(props) {
         <br />
 
         <Button
-          className="Button"
           type="submit"
           color="primary"
           variant="outlined"

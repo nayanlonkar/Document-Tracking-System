@@ -1,0 +1,31 @@
+.send-form {
+  font-size: 130%;
+  text-align: left;
+  margin-top: 50px;
+  margin-left: 35%;
+}
+
+.send-form div {
+  margin-bottom: 20px;
+}
+.send-form input[type="text"] {
+  font-size: large;
+  height: 25px;
+  width: 200px;
+  border: 1.4px solid;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.send-form button {
+  width: 90px;
+  height: 30px;
+  font-size: medium;
+}
+
+.send-form select {
+  font-size: medium;
+  width: 100px;
+  height: 23px;
+}

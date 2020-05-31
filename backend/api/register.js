@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const connection = require("../db_conf/db_connection");
 
-router.post("/register", (req, res) => {
+router.post("/", (req, res) => {
   const isPresent = async () => {
     await connection.query(
       "SELECT * FROM user_details WHERE username=?",
@@ -28,18 +28,6 @@ router.post("/register", (req, res) => {
   };
 
   isPresent();
-
-  //   const create = async () => {
-  //     await connection.query(
-  //       "INSERT INTO user_details SET ?",
-  //       [req.body],
-  //       (err, result, fields) => {
-  //         if (err) console.log(err);
-  //         res.status(200).json({ message: "success" });
-  //       }
-  //     );
-  //   };
-  //   create();
 });
 
 module.exports = router;
