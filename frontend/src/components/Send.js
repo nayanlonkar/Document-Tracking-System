@@ -2,16 +2,28 @@ import React, { useState, useRef } from "react";
 import "./Send.css";
 import Axios from "axios";
 
-export default function Send() {
+export default function Send(props) {
   const [recipient, setrecipient] = useState("");
-  const file = useRef(null);
+  let [document, setdocument] = useState(null);
   const [docType, setdocType] = useState("notice");
   const [userList, setuserList] = useState([]);
+  const [error, seterror] = useState(null);
+  const [msg, setmsg] = useState(null);
 
-  function onSubmitHandler(event) {
+  async function onSubmitHandler(event) {
     event.preventDefault();
-    console.log(recipient);
-    console.log(docType);
+    const formData = new FormData();
+    formData.append(
+      "file",
+      document,
+      document.name,
+      docType,
+      props.user.user_id
+    );
+    console.log(formData);
+
+    const res = await Axios.post("http://localhost:3001/api/file", formData);
+    console.log(res);
   }
 
   async function get_users(event) {
@@ -19,6 +31,12 @@ export default function Send() {
     const param = { params: { username: event.target.value } };
     const res = await Axios.get("http://localhost:3001/api/users", param);
     setuserList(res.data.result);
+  }
+
+  function upload_handler(event) {
+    document = event.target.files[0];
+    console.log(document);
+    console.log(document.name);
   }
 
   return (
@@ -42,7 +60,7 @@ export default function Send() {
         </div>
         <div>
           <label htmlFor="file">Document &nbsp;: &nbsp;&nbsp;&nbsp;</label>
-          <input type="file" name="file" id="file" ref={file} />
+          <input type="file" onChange={upload_handler} />
         </div>
         <div>
           <label htmlFor="docType">

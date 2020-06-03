@@ -19,7 +19,8 @@ router.post("/", (req, res) => {
 
         if (req.body.password === result[0].password) {
           res.status(200).json({
-            fist_name: result[0].first_name,
+            user_id: result[0].id,
+            first_name: result[0].first_name,
             last_name: result[0].last_name,
             username: result[0].username,
           });

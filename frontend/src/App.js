@@ -4,13 +4,13 @@ import Auth from "./components/auth/Auth";
 import Container from "./components/layouts/Container";
 
 function App() {
-  // const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+  // const [isLoggedIn, setisLoggedIn] = useState(true);
   const [user, setuser] = useState(null);
   return (
     <div className="App">
       {isLoggedIn ? (
-        <Container />
+        <Container user={user} />
       ) : (
         <Auth setisLoggedIn={setisLoggedIn} setuser={setuser} />
       )}

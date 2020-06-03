@@ -9,12 +9,15 @@ import Forward from "../Forward";
 import LogOut from "../LogOut";
 import Track from "../Track";
 
-export default function Content() {
+export default function Content(props) {
   return (
     <div>
       <Switch>
         <Route path="/" component={Home} exact></Route>
-        <Route path="/send" component={Send}></Route>
+        <Route
+          path="/send"
+          component={() => <Send user={props.user} />}
+        ></Route>
         <Route path="/receive" component={Receive}></Route>
         <Route path="/forward" component={Forward}></Route>
         <Route path="/track" component={Track}></Route>
