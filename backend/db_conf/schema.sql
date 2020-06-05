@@ -11,19 +11,15 @@ CREATE TABLE IF NOT EXISTS user_details (
 
 CREATE TABLE IF NOT EXISTS files (
     id              INT         AUTO_INCREMENT PRIMARY KEY,
-    file_name       CHAR(25)    NOT NULL,
+    file_name       CHAR(50)    NOT NULL,
     doc_type        CHAR(25)    NOT NULL,
-    user_id         INT    NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user_details(id)
+    username        CHAR(25)    NOT NULL
 ) ENGINE = INNODB CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS userFiles (
     id              INT         AUTO_INCREMENT  PRIMARY KEY,
-    file_id         INT         NOT NULL,
-    sender          INT         NOT NULL, 
-    receier         INT         NOT NULL,
-    is_received     INT         DEFAULT 0,
-    FOREIGN KEY (file_id) REFERENCES files(id),
-    FOREIGN KEY (sender) REFERENCES user_details(id),
-    FOREIGN KEY (receier) REFERENCES user_details(id)
+    file_name       CHAR(50)    NOT NULL,
+    sender          CHAR(25)    NOT NULL, 
+    receier         CHAR(25)    NOT NULL,
+    is_received     INT         DEFAULT 0
 ) ENGINE = INNODB CHARACTER SET=utf8;

@@ -19,7 +19,8 @@ export default function Send(props) {
   async function onSubmitHandler(event) {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("sender_id", props.user.user_id);
+    formData.append("sender", props.user.username);
+    formData.append("receiver", recipient);
     formData.append("doc_type", docType);
     console.log(document);
     formData.append("file", document, document.name);
