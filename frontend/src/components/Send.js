@@ -10,20 +10,22 @@ export default function Send(props) {
   const [error, seterror] = useState(null);
   const [msg, setmsg] = useState(null);
 
+  function submit_checker() {
+    if (recipient === "") return 1;
+    if (document === null) return 1;
+    return 0;
+  }
+
   async function onSubmitHandler(event) {
     event.preventDefault();
     const formData = new FormData();
-    formData.append(
-      "file",
-      document,
-      document.name,
-      docType,
-      props.user.user_id
-    );
-    console.log(formData);
+    formData.append("sender_id", props.user.user_id);
+    formData.append("doc_type", docType);
+    console.log(document);
+    formData.append("file", document, document.name);
 
     const res = await Axios.post("http://localhost:3001/api/file", formData);
-    console.log(res);
+    // console.log(res);
   }
 
   async function get_users(event) {
@@ -34,9 +36,7 @@ export default function Send(props) {
   }
 
   function upload_handler(event) {
-    document = event.target.files[0];
-    console.log(document);
-    console.log(document.name);
+    setdocument(event.target.files[0]);
   }
 
   return (
@@ -72,7 +72,7 @@ export default function Send(props) {
           </select>
         </div>
         <div>
-          <button type="submit" value="submit">
+          <button type="submit" value="submit" disabled={submit_checker()}>
             Submit
           </button>
         </div>

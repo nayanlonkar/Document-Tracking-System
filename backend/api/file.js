@@ -3,30 +3,22 @@ const router = express.Router();
 var multer = require("multer");
 const connection = require("../db_conf/db_connection");
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "../upload_data");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
+const storage = multer.diskStorage({
+  destination: "../upload_data",
+  filename(req, file, cb) {
+    cb(null, `${file.originalname}`);
   },
 });
 
-var upload = multer({ storage: storage }).single("file");
+const upload = multer({ storage });
 
-router.post("/", (req, res) => {
-  upload(req, res, function (err) {
-    if (err instanceof multer.MulterError) {
-      return res.status(500).json(err);
-    } else if (err) {
-      return res.status(500).json(err);
-    }
-    const db_entry = async () => {
-      connection.query("INSERT INTO files SET ?", []);
-    };
-    console.log(req.file);
-    return res.status(200).send(req.file);
-  });
+// express route where we receive files from the client
+// passing multer middleware
+router.post("/", upload.single("file"), (req, res) => {
+  const file = req.file; // file passed from client
+  const meta = req.body; // all other values passed from the client, like name, etc..
+
+  console.log(meta);
 });
 
 module.exports = router;
