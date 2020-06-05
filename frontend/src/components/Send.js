@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./Send.css";
 import Axios from "axios";
 
@@ -7,8 +7,9 @@ export default function Send(props) {
   let [document, setdocument] = useState(null);
   const [docType, setdocType] = useState("notice");
   const [userList, setuserList] = useState([]);
-  const [error, seterror] = useState(null);
-  const [msg, setmsg] = useState(null);
+  // const [error, seterror] = useState(null);
+  // let [msg, setmsg] = useState(null);
+  const [status, setstatus] = useState(0);
 
   function submit_checker() {
     if (recipient === "") return 1;
@@ -22,11 +23,14 @@ export default function Send(props) {
     formData.append("sender", props.user.username);
     formData.append("receiver", recipient);
     formData.append("doc_type", docType);
-    console.log(document);
     formData.append("file", document, document.name);
 
     const res = await Axios.post("http://localhost:3001/api/file", formData);
-    // console.log(res);
+    if (res.status === 201) {
+      console.log(document);
+      console.log(res);
+      // console.log(res.data.message);
+    }
   }
 
   async function get_users(event) {

@@ -53,7 +53,7 @@ router.post("/", upload.single("file"), (req, res) => {
       [obj2],
       (err, result, fields) => {
         if (err) console.log(err);
-        // res.status(201).json({ message: "userFile is created" });
+        res.status(201).json({ message: "file is successfully sent" });
       }
     );
   };
