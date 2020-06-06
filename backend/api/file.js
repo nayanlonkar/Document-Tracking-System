@@ -34,6 +34,7 @@ router.post("/", upload.single("file"), (req, res) => {
     file_name: file.originalname,
     sender: meta.sender,
     receiver: meta.receiver,
+    doc_type: meta.doc_type,
   };
 
   const file_api = async () => {

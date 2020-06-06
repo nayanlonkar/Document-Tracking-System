@@ -66,6 +66,7 @@ function PrintTable(props) {
             <TableCell>File Id</TableCell>
             <TableCell>File Name</TableCell>
             <TableCell>Sender</TableCell>
+            <TableCell>Doc. Type</TableCell>
             <TableCell>Date-Time</TableCell>
           </TableRow>
         </TableHead>
@@ -77,6 +78,7 @@ function PrintTable(props) {
                 <TableCell>{value.id}</TableCell>
                 <TableCell>{value.file_name}</TableCell>
                 <TableCell>{value.sender}</TableCell>
+                <TableCell>{value.doc_type}</TableCell>
                 <TableCell>{value.date_time}</TableCell>
               </TableRow>
             );
