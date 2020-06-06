@@ -1,0 +1,24 @@
+.Menubar select {
+  font-size: large;
+  height: 30px;
+  width: 100px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.Menubar button {
+  font-size: medium;
+  height: 30px;
+  width: 100px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.Menubar hr {
+  margin-left: 150px;
+  margin-right: 150px;
+}

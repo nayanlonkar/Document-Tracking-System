@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS userFiles (
     id              INT         AUTO_INCREMENT  PRIMARY KEY,
     file_name       CHAR(50)    NOT NULL,
     sender          CHAR(25)    NOT NULL, 
-    receier         CHAR(25)    NOT NULL,
-    is_received     INT         DEFAULT 0
+    receiver         CHAR(25)    NOT NULL,
+    is_received     INT         DEFAULT 0,
+    date_time       DATETIME    DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = INNODB CHARACTER SET=utf8;

@@ -13,7 +13,7 @@ export default function MenuBar() {
           <button>Send</button>
         </Link>
         <Link to="/receive">
-          <button>Receive</button>
+          <button>Received</button>
         </Link>
         <Link to="/forward">
           <button>Forward</button>

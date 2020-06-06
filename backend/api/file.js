@@ -33,7 +33,7 @@ router.post("/", upload.single("file"), (req, res) => {
   let obj2 = {
     file_name: file.originalname,
     sender: meta.sender,
-    receier: meta.receiver,
+    receiver: meta.receiver,
   };
 
   const file_api = async () => {
