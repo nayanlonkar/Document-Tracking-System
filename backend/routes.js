@@ -7,6 +7,9 @@ const register = require("./api/register");
 const users = require("./api/users");
 const file = require("./api/file");
 const received = require("./api/received");
+const userfile = require("./api/userFiles");
+const fileinfo = require("./api/fileInfo");
+const forward = require("./api/forward");
 /********************************************************************************/
 
 /*************************************** middlewares ****************************/
@@ -15,6 +18,10 @@ router.use("/api/register", register);
 router.use("/api/users", users);
 router.use("/api/file", file);
 router.use("/api/received", received);
+router.use("/api/userfile", userfile);
+router.use("/api/fileinfo", fileinfo);
+router.use("/api/forward", forward);
+
 /********************************************************************************/
 
 router.get("/", (req, res) => {

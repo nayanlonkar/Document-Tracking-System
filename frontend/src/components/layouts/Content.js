@@ -22,7 +22,10 @@ export default function Content(props) {
           path="/receive"
           component={() => <Receive user={props.user} />}
         ></Route>
-        <Route path="/forward" component={Forward}></Route>
+        <Route
+          path="/forward"
+          component={() => <Forward user={props.user} />}
+        ></Route>
         <Route path="/track" component={Track}></Route>
         <Route path="/logout" component={LogOut}></Route>
       </Switch>

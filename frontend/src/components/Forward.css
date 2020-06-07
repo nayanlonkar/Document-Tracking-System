@@ -1,15 +1,15 @@
-.send-form {
+.forward-form {
   font-size: 130%;
   text-align: left;
   margin-top: 50px;
   margin-left: 35%;
 }
 
-.send-form div {
+.forward-form div {
   margin-bottom: 20px;
 }
 
-.send-form input[type="text"] {
+.forward-form input[type="text"] {
   font-size: large;
   height: 25px;
   width: 200px;
@@ -19,14 +19,20 @@
   border-radius: 5px;
 }
 
-.send-form button {
+.forward-form button {
   width: 90px;
   height: 30px;
   font-size: medium;
 }
 
-.send-form select {
+.forward-form select {
   font-size: medium;
   width: 100px;
   height: 23px;
+}
+
+.print-list select {
+  font-size: medium;
+  width: 200px;
+  height: 30px;
 }
