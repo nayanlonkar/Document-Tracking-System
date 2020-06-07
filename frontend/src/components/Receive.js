@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import download from "downloadjs";
 import "./Receive.css";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -54,6 +55,15 @@ const useStyles = makeStyles({
 });
 
 function PrintTable(props) {
+  // async function Download(file) {
+  //   const filename = file;
+  //   const param = { params: { filename: filename } };
+  //   const res1 = await Axios.get("http://localhost:3001/api/download", param);
+  //   const blob = res1.blob();
+  //   download(res1.data, "test.pdf");
+  //   // download(blob, "test.pdf");
+  // }
+
   const classes = useStyles();
   const list = props.list;
   let counter = 0;
@@ -68,6 +78,7 @@ function PrintTable(props) {
             <TableCell>Sender</TableCell>
             <TableCell>Doc. Type</TableCell>
             <TableCell>Date-Time</TableCell>
+            <TableCell>Download</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -80,6 +91,19 @@ function PrintTable(props) {
                 <TableCell>{value.sender}</TableCell>
                 <TableCell>{value.doc_type}</TableCell>
                 <TableCell>{value.date_time}</TableCell>
+                <TableCell>
+                  <button
+                    onClick={async () => {
+                      const res = await fetch(
+                        `http://localhost:3001/api/download?filename=${value.file_name}`
+                      );
+                      const blob = await res.blob();
+                      download(blob, value.file_name);
+                    }}
+                  >
+                    Download
+                  </button>
+                </TableCell>
               </TableRow>
             );
           })}

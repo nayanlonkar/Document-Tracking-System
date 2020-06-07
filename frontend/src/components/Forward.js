@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Forward.css";
 import Axios from "axios";
 
@@ -7,7 +7,7 @@ export default function Forward(props) {
   const [userList, setuserList] = useState([]);
   const [fileList, setfileList] = useState([]);
   const [filename, setfilename] = useState("");
-  const [docType, setdocType] = useState("");
+  // const [docType, setdocType] = useState("");
 
   async function get_users(event) {
     setrecipient(event.target.value);
@@ -36,7 +36,7 @@ export default function Forward(props) {
       receiver: recipient,
     };
 
-    const res1 = await Axios.post("http://localhost:3001/api/forward", obj);
+    await Axios.post("http://localhost:3001/api/forward", obj);
   }
 
   return (
@@ -62,7 +62,7 @@ export default function Forward(props) {
           </datalist>
         </div>
         <div>
-          <Print_List
+          <PrintList
             list={fileList}
             filename={filename}
             setfilename={setfilename}
@@ -74,7 +74,7 @@ export default function Forward(props) {
   );
 }
 
-function Print_List(props) {
+function PrintList(props) {
   const list = props.list;
   return (
     <div className="print-list">
@@ -83,6 +83,7 @@ function Print_List(props) {
         value={props.filename}
         onChange={(e) => props.setfilename(e.target.value)}
       >
+        <option>Select File</option>
         {list.map((value, index) => {
           return (
             <option key={index} value={value.file_name}>

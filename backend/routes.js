@@ -10,6 +10,7 @@ const received = require("./api/received");
 const userfile = require("./api/userFiles");
 const fileinfo = require("./api/fileInfo");
 const forward = require("./api/forward");
+const download = require("./api/download");
 /********************************************************************************/
 
 /*************************************** middlewares ****************************/
@@ -21,6 +22,7 @@ router.use("/api/received", received);
 router.use("/api/userfile", userfile);
 router.use("/api/fileinfo", fileinfo);
 router.use("/api/forward", forward);
+router.use("/api/download", download);
 
 /********************************************************************************/
 
