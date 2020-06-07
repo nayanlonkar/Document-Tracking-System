@@ -1,9 +1,18 @@
 import React from "react";
 
 export default function LogOut() {
+  const style = {
+    marginTop: "50px",
+    width: "100px",
+    height: "30px",
+  };
   return (
     <div>
-      <h1>LogOut Page</h1>
+      <form>
+        <button style={style} type="submit">
+          Log Out
+        </button>
+      </form>
     </div>
   );
 }
