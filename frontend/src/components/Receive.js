@@ -55,15 +55,6 @@ const useStyles = makeStyles({
 });
 
 function PrintTable(props) {
-  // async function Download(file) {
-  //   const filename = file;
-  //   const param = { params: { filename: filename } };
-  //   const res1 = await Axios.get("http://localhost:3001/api/download", param);
-  //   const blob = res1.blob();
-  //   download(res1.data, "test.pdf");
-  //   // download(blob, "test.pdf");
-  // }
-
   const classes = useStyles();
   const list = props.list;
   let counter = 0;

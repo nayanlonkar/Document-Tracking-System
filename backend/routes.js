@@ -11,6 +11,8 @@ const userfile = require("./api/userFiles");
 const fileinfo = require("./api/fileInfo");
 const forward = require("./api/forward");
 const download = require("./api/download");
+const track = require("./api/track");
+
 /********************************************************************************/
 
 /*************************************** middlewares ****************************/
@@ -23,6 +25,7 @@ router.use("/api/userfile", userfile);
 router.use("/api/fileinfo", fileinfo);
 router.use("/api/forward", forward);
 router.use("/api/download", download);
+router.use("/api/track", track);
 
 /********************************************************************************/
 

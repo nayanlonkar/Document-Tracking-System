@@ -26,7 +26,10 @@ export default function Content(props) {
           path="/forward"
           component={() => <Forward user={props.user} />}
         ></Route>
-        <Route path="/track" component={Track}></Route>
+        <Route
+          path="/track"
+          component={() => <Track user={props.user} />}
+        ></Route>
         <Route path="/logout" component={LogOut}></Route>
       </Switch>
     </div>
