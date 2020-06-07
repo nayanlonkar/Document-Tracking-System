@@ -9,7 +9,7 @@ export default function Send(props) {
   const [userList, setuserList] = useState([]);
   // const [error, seterror] = useState(null);
   // let [msg, setmsg] = useState(null);
-  const [status, setstatus] = useState(0);
+  // const [status, setstatus] = useState(0);
 
   function submit_checker() {
     if (recipient === "") return 1;
